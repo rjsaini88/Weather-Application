@@ -7,6 +7,7 @@
 var input = document.querySelector("input");
 var timeEl = $(".date");
 var currentTime = moment().format("dddd MMMM Do [at] LT");
+var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
 console.log(currentTime);
 timeEl.text(currentTime);
 input.addEventListener("keyup", function (event) {
@@ -16,8 +17,6 @@ input.addEventListener("keyup", function (event) {
     // clearPage(); //this needs corredction.
     createWeatherDisplay(event.target.value);
     // addToHistory(event.target.value);
-// addToHistory();
-    // displayHistory();
   }
 });
 
@@ -47,9 +46,25 @@ input.addEventListener("keyup", function (event) {
 //     // $('#img').append(image)
 //   }
 // }
-
+function displayHistory() {
+  for (var i = 0; i < searchHistory.length; i++) {
+    var historybtn = document.createElement("button");
+    var historyItem = searchHistory[i];
+    console.log(searchHistory[i]);
+    historybtn.textContent = historyItem;
+    historybtn.addEventListener("click", function (event) {
+      createWeatherDisplay(event.target.textContent);
+    });
+    // historybtn.append('.historybtn');
+    // $('historybtn').append('.history');
+    // document.body.appendChild(historybtn);
+    // $('.history').html(currentWeatherStatement)
+    // $('#img').append(image)
+  }
+  $(".history").append(historybtn);
+}
 function addToHistory(location) {
-  var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
+  // var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
   console.log(searchHistory);
   // for (var i=0; i<searchHistory.length;i++){
   //   if(searchHistory === location){
@@ -61,20 +76,19 @@ function addToHistory(location) {
 
   for (var i = 0; i < searchHistory.length; i++) {
     // <------> Question about localStorage
-if(searchHistory[i] === location){
-    // if (searchHistory.includes(location)) {
+    if (searchHistory[i] === location) {
+      // if (searchHistory.includes(location)) {
       return;
     }
     // }
     //   searchHistory.push(location);
     //   localStorage.setItem("history", JSON.stringify(searchHistory));
-
   }
-    // else {
-      searchHistory.push(location);
-    // searchHistory = [location];
-    localStorage.setItem("history", JSON.stringify(searchHistory));
-    // }
+  // else {
+  searchHistory.push(location);
+  // searchHistory = [location];
+  localStorage.setItem("history", JSON.stringify(searchHistory));
+  // }
 }
 
 // }
@@ -114,9 +128,10 @@ function getCurrentWeather(arguments) {
 
 // clearPage () => {document.body.innerHTML=''}
 
-$(".error").hide();
+// $(".error").hide();
 
 function createWeatherDisplay(location) {
+  // document.body.innerHTML = ''
   // clearPage()
   // addToHistory(location);
   //create function to remove inner HTML ---->
@@ -125,12 +140,13 @@ function createWeatherDisplay(location) {
 
     .then((data) => {
       if (data.length === 0) {
-        var errorEl = document.createElement("p");
-        errorEl.textContent = `We could not find ${location}`;
+        // var errorEl = document.createElement("p");
+        $(".error").text(`We could not find ${location}`);
         $(".error").show();
         setTimeout(function () {
           $(".error").hide();
         }, 3000);
+
         // $('.error').append(errorEl)
         // document.body.appendChild(errorEl);
       } else {
@@ -149,14 +165,57 @@ function createWeatherDisplay(location) {
             var image = new Image();
             image.src = weatherPicture;
             // var currentWeatherStatement = document.createElement("p");
-            var currentWeatherStatement = `The current weather is ${weatherData.current.weather[0].main}, with ${weatherData.current.weather[0].description}, and temperature of ${weatherData.current.temp} degrees`;
+            var currentWeatherStatement = `The current weather in ${location} is ${weatherData.current.weather[0].main}, with ${weatherData.current.weather[0].description}, and temperature of ${weatherData.current.temp} degrees`;
             console.log(currentWeatherStatement);
+            let weatherDescription = weatherData.current.weather[0].description;
             // document.body.textContent = JSON.stringify(weatherData, null, 2);  //stringfy data and print the data to screen.
             console.log(weatherData);
             console.log(weatherData.current.weather[0].main);
             console.log(weatherData.current.weather[0].description);
+            console.log(weatherDescription);
             console.log(weatherData.current.temp);
+            addToHistory(location);
+            displayHistory();
             $(".weather").html(currentWeatherStatement);
+
+            if (weatherDescription === "clear sky") {
+              $(".currentWeather").removeClass();
+              $(".currentWeather").addClass("clearSky");
+            }
+
+            if (weatherDescription === "few clouds") {
+              $(".currentWeather").removeClass();
+              $(".currentWeather").addClass("fewClouds");
+            }
+            if (weatherDescription === "scattered clouds") {
+              $(".weather").removeClass();
+              $(".weather").addClass("scatteredClouds");
+            }
+            if (weatherDescription === "broken clouds") {
+              $(".weather").removeClass();
+              $(".weather").addClass("brokenClouds");
+            }
+            if (weatherDescription === "shower rain") {
+              $(".weather").removeClass();
+              $(".weather").addClass("showerRain");
+            }
+            if (weatherDescription === "rain") {
+              $(".weather").removeClass();
+              $(".weather").addClass("rain");
+            }
+            if (weatherDescription === "thunderstorm") {
+              $(".weather").removeClass();
+              $(".weather").addClass("thunderstorm");
+            }
+            if (weatherDescription === "snow") {
+              $(".weather").removeClass();
+              $(".weather").addClass("snow");
+            }
+            if (weatherDescription === "mist") {
+              $(".weather").removeClass();
+              $(".weather").addClass("mist");
+            }
+
             // $('#img').append(image)
             // const weatherStatement = document.querySelector(".weather");
             // const pic = document.querySelector('img');
@@ -181,12 +240,4 @@ function createWeatherDisplay(location) {
     .catch((error) => {
       document.body.textContent = error.message;
     });
-}
-
-(clearPage) => {
-  $(".cards").remove();
-};
-
-function viewHistory() {
-  let history;
 }

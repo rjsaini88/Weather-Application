@@ -9,10 +9,7 @@
   color: red;
   height: 200px;
 }
-body{
-    background-image: url(https://tenor.com/view/frigid-cold-weather-winter-gif-15538076);
-    background-size: cover;
-}
+
 .wrapper {
   margin: auto;
 
@@ -43,9 +40,14 @@ margin-left: 15px;
   justify-content: center;
   cursor: pointer;
 }
+.error{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
 
-.cards div{
-    /* border: solid 3px black; */
+.cards div {
+    border: solid 3px black;
     /* margin: 1px; */
 text-align: center;
 height: 40px;
@@ -59,6 +61,44 @@ flex-wrap: wrap;
 nav button{
     display: block;
 }
-.cloudy{
-    background: <div style="width:100%;height:0;padding-bottom:66%;position:relative;"><iframe src="https://giphy.com/embed/xT9GEDhzERbjDD15O8" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/justin-g-storm-clouds-xT9GEDhzERbjDD15O8">via GIPHY</a></p>;
+
+.clearSky{
+  background-image:url('./Images/clear\ sky.gif') ;
+  background-size: cover;
 }
+.fewClouds{
+  background-image:url('./Images/few\ clouds.gif') ;
+  background-size: cover;
+}
+
+.scatteredClouds{
+  background-image: url('./Images/scattered\ clouds.gif') ;
+  background-size: cover;
+}
+.brokenClouds{
+  background-image: url('/Images/clouds.gif') ;
+  background-size: cover;
+}
+.showerRain{
+  background-image: url('/Images/shower\ rain.gif') ;
+  background-size: cover;
+}
+.rain{
+  background-image: url('./Images/rain.gif') ;
+  background-size: cover;
+}
+.thunderstorm{
+  background-image: url('/Images/thunder.gif') ;
+  background-size: cover;
+}
+.snow{
+  background-image: url('/Images/snow.gif') ;
+  background-size: cover;
+}
+.mist{
+  background-image: url('/Images/mist.gif') ;
+  background-size: cover;
+}
+
+
+
