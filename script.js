@@ -1,11 +1,18 @@
-// window.onload = function (){
-//   if(window.jQuery){
-//     alert("yeah")
-//   }
-// }
-//
-var input = document.querySelector("input");
+/* Questions
+
+
+
+
+
+
+5 day history loop over data.
+cookies
+*/
+
+var input = document.querySelector("#input");
+var search = document.querySelector(".searchBtn");
 var timeEl = $(".date");
+var imgTag = document.querySelector("#img");
 var currentTime = moment().format("dddd MMMM Do [at] LT");
 var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
 console.log(currentTime);
@@ -17,8 +24,19 @@ input.addEventListener("keyup", function (event) {
     // clearPage(); //this needs corredction.
     createWeatherDisplay(event.target.value);
     // addToHistory(event.target.value);
+    addToHistory(event.target.value);
+    displayHistory();
   }
 });
+
+search.addEventListener("click", function () {
+  createWeatherDisplay(input.value);
+  addToHistory(input.value);
+  displayHistory();
+});
+
+displayHistory();
+// $('.seach').on ('click', createWeatherDisplay);  <-----> click event listener!!!
 
 // function clearPage() {
 
@@ -47,21 +65,29 @@ input.addEventListener("keyup", function (event) {
 //   }
 // }
 function displayHistory() {
+  //clear old history
+  $(".history").text("");
+  console.log(searchHistory);
   for (var i = 0; i < searchHistory.length; i++) {
     var historybtn = document.createElement("button");
+    // historybtn.setAttribute;  ---------- check this
     var historyItem = searchHistory[i];
     console.log(searchHistory[i]);
+    console.log(historyItem);
+    console.log(historybtn);
     historybtn.textContent = historyItem;
     historybtn.addEventListener("click", function (event) {
       createWeatherDisplay(event.target.textContent);
+      // if(searchHistory)
     });
+
     // historybtn.append('.historybtn');
     // $('historybtn').append('.history');
     // document.body.appendChild(historybtn);
     // $('.history').html(currentWeatherStatement)
     // $('#img').append(image)
+    $(".history").append(historybtn);
   }
-  $(".history").append(historybtn);
 }
 function addToHistory(location) {
   // var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
@@ -131,6 +157,10 @@ function getCurrentWeather(arguments) {
 // $(".error").hide();
 
 function createWeatherDisplay(location) {
+  $(".currentWeather").removeClass(
+    "clearSky fewClouds mist snow scatteredClouds brokenClouds showerRain rain thunderstorm"
+  );
+
   // document.body.innerHTML = ''
   // clearPage()
   // addToHistory(location);
@@ -162,74 +192,61 @@ function createWeatherDisplay(location) {
           .then((weatherData) => {
             // var weatherPicture = document.createElement("img");
             var weatherPicture = `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
-            var image = new Image();
-            image.src = weatherPicture;
+
+            imgTag.src = weatherPicture;
             // var currentWeatherStatement = document.createElement("p");
             var currentWeatherStatement = `The current weather in ${location} is ${weatherData.current.weather[0].main}, with ${weatherData.current.weather[0].description}, and temperature of ${weatherData.current.temp} degrees`;
             console.log(currentWeatherStatement);
             let weatherDescription = weatherData.current.weather[0].description;
+
             // document.body.textContent = JSON.stringify(weatherData, null, 2);  //stringfy data and print the data to screen.
             console.log(weatherData);
             console.log(weatherData.current.weather[0].main);
             console.log(weatherData.current.weather[0].description);
             console.log(weatherDescription);
             console.log(weatherData.current.temp);
-            addToHistory(location);
-            displayHistory();
+
+            // displayHistory();
             $(".weather").html(currentWeatherStatement);
 
+            // $(".currentWeather").removeClass("clearSky fewClouds mist snow scatteredClouds brokenClouds showerRain rain thunderstorm" );
+
             if (weatherDescription === "clear sky") {
-              $(".currentWeather").removeClass();
               $(".currentWeather").addClass("clearSky");
             }
 
             if (weatherDescription === "few clouds") {
-              $(".currentWeather").removeClass();
+              // $(".currentWeather").removeClass();
               $(".currentWeather").addClass("fewClouds");
             }
             if (weatherDescription === "scattered clouds") {
-              $(".weather").removeClass();
-              $(".weather").addClass("scatteredClouds");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("scatteredClouds");
             }
             if (weatherDescription === "broken clouds") {
-              $(".weather").removeClass();
-              $(".weather").addClass("brokenClouds");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("brokenClouds");
             }
             if (weatherDescription === "shower rain") {
-              $(".weather").removeClass();
-              $(".weather").addClass("showerRain");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("showerRain");
             }
             if (weatherDescription === "rain") {
-              $(".weather").removeClass();
-              $(".weather").addClass("rain");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("rain");
             }
             if (weatherDescription === "thunderstorm") {
-              $(".weather").removeClass();
-              $(".weather").addClass("thunderstorm");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("thunderstorm");
             }
             if (weatherDescription === "snow") {
-              $(".weather").removeClass();
-              $(".weather").addClass("snow");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("snow");
             }
             if (weatherDescription === "mist") {
-              $(".weather").removeClass();
-              $(".weather").addClass("mist");
+              // $(".weather").removeClass();
+              $(".currentWeather").addClass("mist");
             }
-
-            // $('#img').append(image)
-            // const weatherStatement = document.querySelector(".weather");
-            // const pic = document.querySelector('img');
-            // weatherStatement.textContent = currentWeatherStatement;
-            // document.querySelector('.weather').appendChild (currentWeatherStatement);
-            // const weather = document.querySelector(".weather");
-            // weather.textContent = currentWeatherStatement;
-            // document.querySelector('img').innerHTML = weatherPicture;
-            // $('.img').append(weatherPicture);
-            // $('.weather').appendChild(currentWeatherStatement);
-            // document.body.appendChild(weatherPicture);
-            // document.getElementById('#img').appendChild(weatherPicture);
-
-            // document.body.appendChild(currentWeatherStatement);
           })
           .catch((error) => {
             //catch any error
@@ -241,3 +258,15 @@ function createWeatherDisplay(location) {
       document.body.textContent = error.message;
     });
 }
+
+// change jumbrotron background <----------->
+// let backgroundImageUrl = [
+//   "./Images/clear-sky.gif, /Images/few-clouds.gif, /Images/scattered-clouds.gif, /Images/clouds.gif, /Images/shower-rain.gif, /Images/rain.gif, /Images/thunder.gif, /Images/snow.gif, /Images/mist.gif "
+// ];
+// let jumbo = $('.jumbotron')
+// function changeBackground (){
+// var
+// }
+// let changeBackground = function (){
+//  change = setInterval()
+// }

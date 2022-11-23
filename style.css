@@ -3,7 +3,7 @@
   text-align: center;
   justify-content: center;
   flex-direction: column;
- 
+  background-size: cover;
 
   /* background-color: black; */
   color: red;
@@ -21,15 +21,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  opacity: .5;
+  opacity: 0.5;
   text-align: center;
 }
 #input {
   width: 75%;
   height: 75%;
   border-radius: 20px;
-margin-left: 15px;
-
+  margin-left: 15px;
 }
 .searchBtn {
   overflow: hidden;
@@ -40,65 +39,71 @@ margin-left: 15px;
   justify-content: center;
   cursor: pointer;
 }
-.error{
+.error {
   margin: auto;
   width: 50%;
   text-align: center;
 }
-
+.container{
+  margin: 5px;
+  align-self: center;
+}
 .cards div {
-    border: solid 3px black;
-    /* margin: 1px; */
-text-align: center;
-height: 40px;
-flex-wrap: wrap;
-
+  border: solid 3px black;
+  margin: 10px;
+  text-align: center;
+  /* height: 40px !important;  Example <-----------> */
+  flex-wrap: wrap;
 }
-.history{
-    display: flex;
-    flex-direction: row;
+.history {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 30%;
+  border: 5px;
 }
-nav button{
-    display: block;
+.card-header{
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
-.clearSky{
-  background-image:url('./Images/clear\ sky.gif') ;
-  background-size: cover;
-}
-.fewClouds{
-  background-image:url('./Images/few\ clouds.gif') ;
-  background-size: cover;
+nav button {
+  display: block;
 }
 
-.scatteredClouds{
-  background-image: url('./Images/scattered\ clouds.gif') ;
+.clearSky {
+  background-image: url("./Images/clear-sky.gif");
   background-size: cover;
 }
-.brokenClouds{
-  background-image: url('/Images/clouds.gif') ;
-  background-size: cover;
-}
-.showerRain{
-  background-image: url('/Images/shower\ rain.gif') ;
-  background-size: cover;
-}
-.rain{
-  background-image: url('./Images/rain.gif') ;
-  background-size: cover;
-}
-.thunderstorm{
-  background-image: url('/Images/thunder.gif') ;
-  background-size: cover;
-}
-.snow{
-  background-image: url('/Images/snow.gif') ;
-  background-size: cover;
-}
-.mist{
-  background-image: url('/Images/mist.gif') ;
+.fewClouds {
+  background-image: url("./Images/few-clouds.gif");
   background-size: cover;
 }
 
-
-
+.scatteredClouds {
+  background-image: url("./Images/scattered-clouds.gif");
+  background-size: cover;
+}
+.brokenClouds {
+  background-image: url("/Images/clouds.gif");
+  background-size: cover;
+}
+.showerRain {
+  background-image: url("/Images/shower-rain.gif");
+  background-size: cover;
+}
+.rain {
+  background-image: url("/Images/rain.gif");
+  background-size: cover;
+}
+.thunderstorm {
+  background-image: url("/Images/thunder.gif");
+  background-size: cover;
+}
+.snow {
+  background-image: url("/Images/snow.gif");
+  background-size: cover;
+}
+.mist {
+  background-image: url("/Images/mist.gif");
+  background-size: cover;
+}
