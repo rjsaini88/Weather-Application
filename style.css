@@ -9,7 +9,10 @@
   color: red;
   height: 200px;
 }
-
+body{
+  background-image: url(./Images/weatherbackground.jpg);
+  background-size: cover;
+}
 .wrapper {
   margin: auto;
 
@@ -105,5 +108,9 @@ nav button {
 }
 .mist {
   background-image: url("/Images/mist.gif");
+  background-size: cover;
+}
+.clouds{
+  background-image: url("/Images/clouds.gif");
   background-size: cover;
 }
