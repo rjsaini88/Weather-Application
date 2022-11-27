@@ -4,14 +4,16 @@
   justify-content: center;
   flex-direction: column;
   background-size: cover;
+  justify-content: end;
 
   /* background-color: black; */
   color: red;
   height: 200px;
 }
-body{
+body {
   background-image: url(./Images/weatherbackground.jpg);
   background-size: cover;
+  color: white;
 }
 .wrapper {
   margin: auto;
@@ -41,15 +43,19 @@ body{
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-left: 5px;
+  margin-right: 15px;
 }
 .error {
   margin: auto;
   width: 50%;
   text-align: center;
 }
-.container{
+.container {
   margin: 5px;
   align-self: center;
+  align-content: center;
+  justify-content: center;
 }
 .cards div {
   border: solid 3px black;
@@ -65,7 +71,7 @@ body{
   width: 30%;
   border: 5px;
 }
-.card-header{
+.card-header {
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -110,7 +116,7 @@ nav button {
   background-image: url("/Images/mist.gif");
   background-size: cover;
 }
-.clouds{
+.clouds {
   background-image: url("/Images/clouds.gif");
   background-size: cover;
 }

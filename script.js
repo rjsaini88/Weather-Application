@@ -82,7 +82,6 @@ function createWeatherDisplay(location) {
         setTimeout(function () {
           $(".error").hide();
         }, 3000);
-        
       } else {
         addToHistory(location);
         displayHistory();
@@ -103,31 +102,90 @@ function createWeatherDisplay(location) {
             var currentWeatherStatement = `The current weather in ${location} shows ${weatherData.current.weather[0].main}, with ${weatherData.current.weather[0].description}, and temperature of ${weatherData.current.temp} degrees`;
             console.log(currentWeatherStatement);
             let weatherDescription = weatherData.current.weather[0].description;
-            let dailyForecast = weatherData.daily;
-            console.log(dailyForecast)
+            // weatherDescription = weatherDecp.toLowerCase();
+            let dF = weatherData.daily;
+            // console.log(weat);
 
-// 5 Day forecast
-// dailyForecast
-// for the future forcast
-// for (vari=1;i<6;i++){
-var day = {
-  main: weatherData.daily[1].weather[0].main,
-  description: weatherData.daily[1].weather[0].description,
-  icon: weatherData.daily[1].weather[0].icon,
-} 
-console.log(day)
-// dailyForecast.foreach(weather[0].main =>{
+            // 5 Day forecast
+            // dailyForecast
+            // for the future forcast
+            // for (vari=1;i<6;i++){
+            var day1 = {
+              main: dF[1].weather[0].main,
+              description: dF[1].weather[0].description,
+              min: dF[1].temp.min,
+              max: dF[1].temp.max,
+              img: dF[1].weather[0].icon,
+            };
+            var day2 = {
+              main: dF[2].weather[0].main,
+              description: dF[2].weather[0].description,
+              min: dF[2].temp.min,
+              max: dF[2].temp.max,
+              img: dF[2].weather[0].icon,
+            };
+            var day3 = {
+              main: dF[3].weather[0].main,
+              description: dF[3].weather[0].description,
+              min: dF[3].temp.min,
+              max: dF[3].temp.max,
+              img: dF[3].weather[0].icon,
+            };
+            var day4 = {
+              main: dF[4].weather[0].main,
+              description: dF[4].weather[0].description,
+              min: dF[4].temp.min,
+              max: dF[4].temp.max,
+              img: dF[4].weather[0].icon,
+            };
+            var day5 = {
+              main: dF[5].weather[0].main,
+              description: dF[5].weather[0].description,
+              min: dF[5].temp.min,
+              max: dF[5].temp.max,
+              img: dF[5].weather[0].icon,
+            };
 
-// }
-//   ) 
+            // console.log(day);
+            $(".1").html(`
+            <p> Weather: ${day1.main} </p>
+<p> Min: ${day1.min}</p>
+<p> Max: ${day1.max}</p>
+<img src= 'http://openweathermap.org/img/wn/${day1.img}@2x.png'
+/> 
+`);
+            $(".2").html(`
+            <p> Weather: ${day2.main} </p>
+<p> Min: ${day2.min}</p>
+<p> Max: ${day2.max}</p>
+<img src= 'http://openweathermap.org/img/wn/${day2.img}@2x.png'
+/> 
+`);
+            $(".3").html(`
+            <p> Weather: ${day3.main} </p>
+<p> Min: ${day3.min}</p>
+<p> Max: ${day3.max}</p>
+<img src= 'http://openweathermap.org/img/wn/${day3.img}@2x.png'
+/> 
+`);
+            $(".4").html(`
+            <p> Weather: ${day4.main} </p>
+<p> Min: ${day4.min}</p>
+<p> Max: ${day4.max}</p>
+<img src= 'http://openweathermap.org/img/wn/${day4.img}@2x.png'
+/> 
+`);
+            $(".5").html(`
+            <p> Weather: ${day5.main} </p>
+<p> Min: ${day5.min}</p>
+<p> Max: ${day5.max}</p>
+<img src= 'http://openweathermap.org/img/wn/${day5.img}@2x.png'
+/> 
+`);
+            // dailyForecast.foreach(weather[0].main =>{
 
-
-
-
-
-
-
-
+            // }
+            //   )
 
             console.log(weatherData);
             console.log(weatherData.current.weather[0].main);
@@ -152,10 +210,10 @@ console.log(day)
             if (weatherDescription === "broken clouds") {
               $(".currentWeather").addClass("brokenClouds");
             }
-            if (weatherDescription === "shower rain") {
+            if (weatherDescription === "shower rain" || "drizzle") {
               $(".currentWeather").addClass("showerRain");
             }
-            if (weatherDescription === "rain") {
+            if (weatherDescription === "rain" || "moderate rain") {
               $(".currentWeather").addClass("rain");
             }
             if (weatherDescription === "thunderstorm") {
