@@ -77,7 +77,7 @@ function createWeatherDisplay(location) {
     .then((data) => {
       if (data.length === 0) {
         // var errorEl = document.createElement("p");
-        $(".error").text(`We could not find ${location}`);
+        $(".error").text(`We could not find ${location}!`);
         $(".error").show();
         setTimeout(function () {
           $(".error").hide();
@@ -104,12 +104,9 @@ function createWeatherDisplay(location) {
             let weatherDescription = weatherData.current.weather[0].description;
             // weatherDescription = weatherDecp.toLowerCase();
             let dF = weatherData.daily;
-            // console.log(weat);
 
-            // 5 Day forecast
-            // dailyForecast
-            // for the future forcast
-            // for (vari=1;i<6;i++){
+            //5 Day forecast
+
             var day1 = {
               main: dF[1].weather[0].main,
               description: dF[1].weather[0].description,
@@ -146,7 +143,6 @@ function createWeatherDisplay(location) {
               img: dF[5].weather[0].icon,
             };
 
-            // console.log(day);
             $(".1").html(`
             <p> Weather: ${day1.main} </p>
 <p> Min: ${day1.min}</p>
@@ -182,10 +178,6 @@ function createWeatherDisplay(location) {
 <img src= 'http://openweathermap.org/img/wn/${day5.img}@2x.png'
 /> 
 `);
-            // dailyForecast.foreach(weather[0].main =>{
-
-            // }
-            //   )
 
             console.log(weatherData);
             console.log(weatherData.current.weather[0].main);
@@ -194,8 +186,6 @@ function createWeatherDisplay(location) {
             console.log(weatherData.current.temp);
 
             $(".weather").html(currentWeatherStatement);
-
-            // $(".currentWeather").removeClass("clearSky fewClouds mist snow scatteredClouds brokenClouds showerRain rain thunderstorm" );
 
             if (weatherDescription === "clear sky") {
               $(".currentWeather").addClass("clearSky");
@@ -210,10 +200,10 @@ function createWeatherDisplay(location) {
             if (weatherDescription === "broken clouds") {
               $(".currentWeather").addClass("brokenClouds");
             }
-            if (weatherDescription === "shower rain" || "drizzle") {
+            if (weatherDescription === "shower rain") {
               $(".currentWeather").addClass("showerRain");
             }
-            if (weatherDescription === "rain" || "moderate rain") {
+            if (weatherDescription === "rain") {
               $(".currentWeather").addClass("rain");
             }
             if (weatherDescription === "thunderstorm") {
@@ -229,9 +219,9 @@ function createWeatherDisplay(location) {
               $(".currentWeather").addClass("mist");
             }
           })
+          //catch any erro print the error in the body
           .catch((error) => {
-            //catch any error
-            document.body.textContent = error.message; //print the error in the body
+            document.body.textContent = error.message;
           });
       }
     })
@@ -239,22 +229,6 @@ function createWeatherDisplay(location) {
       document.body.textContent = error.message;
     });
 }
-
-// var currentWeatherStatement = `The current weather in ${location} shows ${weatherData.current.weather[0].main}, with ${weatherData.current.weather[0].description}, and temperature of ${weatherData.current.temp} degrees`;
-
-/* Put this after the weather data
-
-}
-
-
-
-
-  var userClicked = {
-      drinkName: drinkName,
-      drinkId: drinkId,
-      picture: drinkImg,
-    };
-*/
 
 // change jumbrotron background <----------->
 // let backgroundImageUrl = [
