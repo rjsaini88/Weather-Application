@@ -55,7 +55,7 @@ function addToHistory(location) {
 //This function returns a promise which is fetch to Geocoding API to grab the location. Query is location and limit is 5 to fetch only 5 location based on query
 function getGeoLocation(query, limit = 5) {
   return fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=${limit}&appid=${API_key}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=${limit}&appid=${API_key}`
   );
 }
 function getCurrentWeather(arguments) {
@@ -99,14 +99,14 @@ function createWeatherDisplay(location) {
           .then((weatherResponse) => weatherResponse.json()) //parse the response received from getCurrentWeather  the wriiten function same as writing .then (function(weatherResponse){weatehrResonse.json()})
 
           .then((weatherData) => {
-            var weatherPicture = `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
+            var weatherPicture = `https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`;
 
             imgTag.src = weatherPicture;
 
             var currentWeatherStatement = `The current weather in ${location} shows ${weatherData.current.weather[0].main}, with ${weatherData.current.weather[0].description}, and temperature of ${weatherData.current.temp} degrees`;
             console.log(currentWeatherStatement);
-            let weatherDescription = weatherData.current.weather[0].description;
-            // weatherDescription = weatherDecp.toLowerCase();
+            let weatherDecp = weatherData.current.weather[0].main;
+            weatherDescription = weatherDecp.toLowerCase();
             let dF = weatherData.daily;
             $(".1, .2,.3,.4,.5").show();
 
@@ -152,35 +152,35 @@ function createWeatherDisplay(location) {
             <p> Weather: ${day1.main} </p>
 <p> Min: ${day1.min}</p>
 <p> Max: ${day1.max}</p>
-<img src= 'http://openweathermap.org/img/wn/${day1.img}@2x.png'
+<img src= 'https://openweathermap.org/img/wn/${day1.img}@2x.png'
 /> 
 `);
             $(".2").html(`
             <p> Weather: ${day2.main} </p>
 <p> Min: ${day2.min}</p>
 <p> Max: ${day2.max}</p>
-<img src= 'http://openweathermap.org/img/wn/${day2.img}@2x.png'
+<img src= 'https://openweathermap.org/img/wn/${day2.img}@2x.png'
 /> 
 `);
             $(".3").html(`
             <p> Weather: ${day3.main} </p>
 <p> Min: ${day3.min}</p>
 <p> Max: ${day3.max}</p>
-<img src= 'http://openweathermap.org/img/wn/${day3.img}@2x.png'
+<img src= 'https://openweathermap.org/img/wn/${day3.img}@2x.png'
 /> 
 `);
             $(".4").html(`
             <p> Weather: ${day4.main} </p>
 <p> Min: ${day4.min}</p>
 <p> Max: ${day4.max}</p>
-<img src= 'http://openweathermap.org/img/wn/${day4.img}@2x.png'
+<img src= 'https://openweathermap.org/img/wn/${day4.img}@2x.png'
 /> 
 `);
             $(".5").html(`
             <p> Weather: ${day5.main} </p>
 <p> Min: ${day5.min}</p>
 <p> Max: ${day5.max}</p>
-<img src= 'http://openweathermap.org/img/wn/${day5.img}@2x.png'
+<img src= 'https://openweathermap.org/img/wn/${day5.img}@2x.png'
 /> 
 `);
 
@@ -192,37 +192,30 @@ function createWeatherDisplay(location) {
 
             $(".weather").html(currentWeatherStatement);
 
-            if (weatherDescription === "clear sky") {
+            if (weatherDescription === "clear") { //good
               $(".currentWeather").addClass("clearSky");
-            }
 
-            if (weatherDescription === "few clouds") {
+            }  if (weatherDescription === "clouds") {//good
               $(".currentWeather").addClass("fewClouds");
-            }
-            if (weatherDescription === "scattered clouds") {
-              $(".currentWeather").addClass("scatteredClouds");
-            }
-            if (weatherDescription === "broken clouds") {
-              $(".currentWeather").addClass("brokenClouds");
-            }
-            if (weatherDescription === "shower rain") {
+
+        
+            }  if (weatherDescription === "drizzle") { //good
               $(".currentWeather").addClass("showerRain");
-            }
-            if (weatherDescription === "rain") {
+
+            }  if (weatherDescription === "rain") { //good
               $(".currentWeather").addClass("rain");
-            }
-            if (weatherDescription === "thunderstorm") {
+
+            }  if (weatherDescription === "thunderstorm") {  //good
               $(".currentWeather").addClass("thunderstorm");
-            }
-            if (weatherDescription === "snow") {
+
+            }  if (weatherDescription === "snow") { //good
               $(".currentWeather").addClass("snow");
-            }
-            if (weatherDescription === "mist") {
+
+            }  if (weatherDescription === "mist") { //good
               $(".currentWeather").addClass("mist");
+
             }
-            if (weatherDescription === "overcast clouds") {
-              $(".currentWeather").addClass("mist");
-            }
+          
           })
           //catch any erro print the error in the body
           .catch((error) => {
