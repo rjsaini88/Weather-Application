@@ -7,11 +7,11 @@
   justify-content: end;
 
   /* background-color: black; */
-  color: red;
+  color: black;
   height: 200px;
 }
 body {
-  background-image: url(./Images/weatherbackground.jpg);
+  background-image: url(/Images/weatherbackground.jpg);
   background-size: cover;
   color: white;
 }
@@ -91,20 +91,20 @@ nav button {
 }
 
 .clearSky {
-  background-image: url("./Images/clear-sky.gif");
+  background-image: url("/Images/clear-sky.gif");
   background-size: cover;
 }
 .fewClouds {
-  background-image: url("./Images/few-clouds.gif");
+  background-image: url("/Images/few-clouds.gif");
   background-size: cover;
 }
 
 .scatteredClouds {
-  background-image: url("./Images/scattered-clouds.gif");
+  background-image: url("/Images/scattered-clouds.gif");
   background-size: cover;
 }
 .brokenClouds {
-  background-image: url("./Images/clouds.gif");
+  background-image: url("/Images/clouds.gif");
   background-size: cover;
 }
 .showerRain {
@@ -112,22 +112,22 @@ nav button {
   background-size: cover;
 }
 .rain {
-  background-image: url("./Images/rain.gif");
+  background-image: url("/Images/rain.gif");
   background-size: cover;
 }
 .thunderstorm {
-  background-image: url("./Images/thunder.gif");
+  background-image: url("/Images/thunder.gif");
   background-size: cover;
 }
 .snow {
-  background-image: url("./Images/snow.gif");
+  background-image: url("/Images/snow.gif");
   background-size: cover;
 }
 .mist {
-  background-image: url("./Images/mist.gif");
+  background-image: url("/Images/mist.gif");
   background-size: cover;
 }
 .clouds {
-  background-image: url("./Images/clouds.gif");
+  background-image: url("/Images/clouds.gif");
   background-size: cover;
 }
