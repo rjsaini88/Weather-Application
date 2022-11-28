@@ -93,7 +93,7 @@ nav button {
   background-size: cover;
 }
 .brokenClouds {
-  background-image: url("/Images/clouds.gif");
+  background-image: url("./Images/clouds.gif");
   background-size: cover;
 }
 .showerRain {
@@ -101,22 +101,22 @@ nav button {
   background-size: cover;
 }
 .rain {
-  background-image: url("/Images/rain.gif");
+  background-image: url("./Images/rain.gif");
   background-size: cover;
 }
 .thunderstorm {
-  background-image: url("/Images/thunder.gif");
+  background-image: url("./Images/thunder.gif");
   background-size: cover;
 }
 .snow {
-  background-image: url("/Images/snow.gif");
+  background-image: url("./Images/snow.gif");
   background-size: cover;
 }
 .mist {
-  background-image: url("/Images/mist.gif");
+  background-image: url("./Images/mist.gif");
   background-size: cover;
 }
 .clouds {
-  background-image: url("/Images/clouds.gif");
+  background-image: url("./Images/clouds.gif");
   background-size: cover;
 }
