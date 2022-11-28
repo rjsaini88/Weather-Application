@@ -51,16 +51,15 @@ body {
   width: 50%;
   text-align: center;
 }
-.container {
-  margin: 5px;
-  align-self: center;
-  align-content: center;
+
+.weatherCards{
   justify-content: center;
 }
-.cards div {
+.weatherCards div {
   border: solid 3px black;
   margin: 10px;
   text-align: center;
+
   /* height: 40px !important;  Example <-----------> */
   flex-wrap: wrap;
 }

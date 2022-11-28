@@ -7,6 +7,7 @@ var currentTime = moment().format("dddd MMMM Do [at] LT");
 var searchHistory = JSON.parse(localStorage.getItem("history")) || [];
 console.log(currentTime);
 timeEl.text(currentTime);
+$(".1, .2,.3,.4,.5").hide();
 
 //Click and enter event to do the search
 input.addEventListener("keyup", function (event) {
@@ -17,7 +18,6 @@ input.addEventListener("keyup", function (event) {
 });
 search.addEventListener("click", function () {
   createWeatherDisplay(input.value);
-  // displayHistory();
 });
 
 displayHistory();
@@ -70,6 +70,9 @@ function createWeatherDisplay(location) {
   $(".currentWeather").removeClass(
     "clearSky clouds fewClouds mist snow scatteredClouds brokenClouds showerRain rain thunderstorm"
   );
+  $(".1, .2,.3,.4,.5").hide();
+
+  // $("").text("");
 
   return getGeoLocation(location) //Get location, which is Riverside, a function that retruns a promise, which is a fetch to the api geolocation
     .then((response) => response.json()) //then the response from api is parsed to JavaScript object
@@ -82,6 +85,7 @@ function createWeatherDisplay(location) {
         setTimeout(function () {
           $(".error").hide();
         }, 3000);
+        $(".1, .2,.3,.4,.5").hide();
       } else {
         addToHistory(location);
         displayHistory();
@@ -104,6 +108,7 @@ function createWeatherDisplay(location) {
             let weatherDescription = weatherData.current.weather[0].description;
             // weatherDescription = weatherDecp.toLowerCase();
             let dF = weatherData.daily;
+            $(".1, .2,.3,.4,.5").show();
 
             //5 Day forecast
 
